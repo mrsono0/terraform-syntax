@@ -22,23 +22,21 @@ resource "aws_vpc" "default" {
 
 # Create a Public Subnet
 resource "aws_subnet" "public_subnet_1" {
-  vpc_id     = aws_vpc.default.id
-  cidr_block = "10.0.100.0/24"
-
+  vpc_id            = aws_vpc.default.id
+  cidr_block        = "10.0.100.0/24"
+  availability_zone = "ap-northeast-2a"
   tags = {
     Name = "hangaramit_public_subnet_1"
   }
 }
 
-# resource "aws_subnet" "hangaramit_private_subnet_1" {
-#   vpc_id     = aws_vpc.default.id
-#   cidr_block = "10.0.101.0/24"
-
-#   tags = {
-#     Name = "hangaramit_private_subnet_1"
-#   }
-# }
-data "aws_subnet" "private_subnet_1" {
-  id = "subnet-08b4bbe35863e6c0b"
+resource "aws_subnet" "private_subnet_1" {
+  vpc_id            = aws_vpc.default.id
+  cidr_block        = "10.0.101.0/24"
+  availability_zone = "ap-northeast-2a"
+  tags = {
+    Name = "hangaramit_private_subnet_1"
+  }
 }
+
 
